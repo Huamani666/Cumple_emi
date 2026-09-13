@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Feliz Cumpleaños Emi! 🎉</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      background-attachment: fixed;
+    }
+
+    .font-cursive {
+      font-family: 'Great Vibes', cursive;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .shadow-soft {
+      box-shadow: 0 10px 25px -5px rgba(219, 39, 119, 0.15), 0 8px 10px -6px rgba(124, 58, 237, 0.1);
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      14% { transform: scale(1.15); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.15); }
+      70% { transform: scale(1); }
+    }
+    .pulse-heart {
+      animation: heartbeat 1.5s infinite;
+    }
+
+    .bar {
+      width: 4px;
+      height: 16px;
+      background-color: #ec4899;
+      border-radius: 2px;
+      animation: bounce 1s infinite alternate;
+    }
+    .bar:nth-child(2) { animation-delay: 0.2s; height: 24px; }
+    .bar:nth-child(3) { animation-delay: 0.4s; height: 12px; }
+    .bar:nth-child(4) { animation-delay: 0.6s; height: 20px; }
+    .paused .bar { animation-play-state: paused; height: 6px; }
+
+    @keyframes bounce {
+      0% { transform: scaleY(0.3); }
+      100% { transform: scaleY(1); }
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s ease-out;
+      will-change: transform;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 pb-28">
+
+  <!-- Header Banner -->
+  <header class="relative bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white py-10 px-4 text-center overflow-hidden rounded-b-3xl shadow-lg">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    
+    <div class="relative z-10 max-w-lg mx-auto">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-xs font-semibold backdrop-blur-md mb-3 border border-white/30 text-pink-100">
+        <i class="fa-solid fa-cake-candles text-yellow-300"></i> ¡Edición Especial de Cumpleaños!
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight drop-shadow-md">
+        ¡Feliz Cumpleaños, <span class="text-yellow-300 font-cursive text-5xl sm:text-6xl block sm:inline mt-1 sm:mt-0">Emi</span>! 🎉
+      </h1>
+      <p class="mt-2 text-sm sm:text-base font-light text-pink-100">
+        Celebrando a una futura enfermera con ritmo y corazón de Saya 💃🩺
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-md mx-auto px-4 mt-6 space-y-6">
+
+    <!-- Carousel Section -->
+    <section class="glass-card rounded-3xl p-4 shadow-soft">
+      <div class="flex items-center justify-between mb-3 px-1">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-pink-600 flex items-center gap-2">
+          <i class="fa-solid fa-camera-retro"></i> Recuerdos Especiales
+        </h2>
+        <span class="text-xs text-slate-400">Desliza <i class="fa-solid fa-arrows-left-right text-pink-400"></i></span>
+      </div>
+
+      <div id="carousel-container" class="relative w-full h-72 sm:h-80 rounded-2xl overflow-hidden shadow-inner bg-slate-900 group touch-pan-y">
+        <div id="carousel-track" class="carousel-track h-full">
+          <div class="w-full flex-shrink-0 h-full relative">
+            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80" alt="Celebración" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+              <p class="text-white text-xs font-medium"><i class="fa-solid fa-sparkles text-yellow-400 mr-1"></i> ¡Que la alegría y el baile nunca falten!</p>
+            </div>
+          </div>
+          <div class="w-full flex-shrink-0 h-full relative">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Enfermería" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+              <p class="text-white text-xs font-medium"><i class="fa-solid fa-user-nurse text-pink-400 mr-1"></i> Vocación y dedicación en cada paso</p>
+            </div>
+          </div>
+          <div class="w-full flex-shrink-0 h-full relative">
+            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80" alt="Saya y Música" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+              <p class="text-white text-xs font-medium"><i class="fa-solid fa-music text-purple-400 mr-1"></i> Ritmo, fuerza y pasión por la Saya</p>
+            </div>
+          </div>
+        </div>
+
+        <button id="prev-btn" class="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/30 backdrop-blur-md text-white flex items-center justify-center shadow-lg active:scale-90 transition">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button id="next-btn" class="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/30 backdrop-blur-md text-white flex items-center justify-center shadow-lg active:scale-90 transition">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <div id="carousel-dots" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+          <button class="w-2.5 h-2.5 rounded-full bg-white transition-all"></button>
+          <button class="w-2.5 h-2.5 rounded-full bg-white/50 transition-all"></button>
+          <button class="w-2.5 h-2.5 rounded-full bg-white/50 transition-all"></button>
+        </div>
+      </div>
+
+      <div class="mt-3 text-center">
+        <label for="image-upload" class="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-600 bg-purple-50 hover:bg-purple-100 px-3 py-1.5 rounded-full cursor-pointer transition">
+          <i class="fa-solid fa-upload"></i> Cambiar fotos por las tuyas
+        </label>
+        <input id="image-upload" type="file" accept="image/*" multiple class="hidden">
+      </div>
+    </section>
+
+    <!-- Badges -->
+    <section class="grid grid-cols-2 gap-3">
+      <div class="glass-card rounded-2xl p-4 text-center shadow-soft border-l-4 border-pink-500">
+        <div class="w-10 h-10 mx-auto bg-pink-100 text-pink-600 rounded-full flex items-center justify-center text-lg mb-2">
+          <i class="fa-solid fa-heart-pulse pulse-heart"></i>
+        </div>
+        <h3 class="text-xs font-bold text-slate-700 uppercase">Enfermería</h3>
+        <p class="text-[11px] text-slate-500 mt-0.5">Cuidando vidas con amor y vocación 🩺</p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-4 text-center shadow-soft border-l-4 border-purple-500">
+        <div class="w-10 h-10 mx-auto bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-lg mb-2">
+          <i class="fa-solid fa-compact-disc fa-spin" style="animation-duration: 4s;"></i>
+        </div>
+        <h3 class="text-xs font-bold text-slate-700 uppercase">Pasión por la Saya</h3>
+        <p class="text-[11px] text-slate-500 mt-0.5">Elegancia, ritmo y pura energía 💃</p>
+      </div>
+    </section>
+
+    <!-- Message -->
+    <section class="glass-card rounded-3xl p-6 shadow-soft relative overflow-hidden">
+      <div class="absolute -right-6 -bottom-6 text-pink-100 opacity-40 pointer-events-none">
+        <i class="fa-solid fa-stethoscope text-9xl"></i>
+      </div>
+      
+      <h2 class="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+        <i class="fa-solid fa-envelope-open-text text-pink-500"></i> Para Emi en su día
+      </h2>
+
+      <div class="space-y-3 text-sm text-slate-600 leading-relaxed relative z-10">
+        <p class="font-semibold text-pink-600 text-base">¡Querida Emi!</p>
+        <p>
+          En este día tan especial quiero desearte un muy feliz cumpleaños. Es increíble ver la pasión y energía que le pones a todo lo que haces.
+        </p>
+        <p>
+          Que nunca se apague ese brillo único cuando bailas <strong>Saya</strong>, contagiando alegría a todos los que te ven. Sé que esa misma fuerza y empatía te convertirán en una <strong>enfermera extraordinaria</strong>, porque cuidar a los demás es parte de tu gran corazón.
+        </p>
+        <p class="font-medium text-slate-700 pt-1">
+          ¡Que este nuevo año de vida venga cargado de salud, bendiciones, mucho baile y metas alcanzadas! 🥂✨
+        </p>
+      </div>
+    </section>
+
+    <!-- Celebration Button -->
+    <section class="text-center pt-2">
+      <button id="confetti-btn" class="w-full py-4 px-6 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold rounded-2xl shadow-lg active:scale-95 transition-all flex items-center justify-center gap-3 text-base">
+        <i class="fa-solid fa-gift text-xl text-yellow-300"></i>
+        <span>¡Toca para Celebrar a Emi!</span>
+        <i class="fa-solid fa-wand-magic-sparkles text-xl text-yellow-300"></i>
+      </button>
+    </section>
+
+  </main>
+
+  <!-- Mobile Music Player -->
+  <div class="fixed bottom-3 left-4 right-4 max-w-md mx-auto z-50">
+    <div class="glass-card bg-slate-900/90 text-white rounded-2xl p-3 shadow-2xl backdrop-blur-md border border-white/20 flex items-center justify-between">
+      <div class="flex items-center gap-3 overflow-hidden">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center flex-shrink-0 text-white shadow-md">
+          <i class="fa-solid fa-music"></i>
+        </div>
+        <div class="min-w-0">
+          <p id="song-title" class="text-xs font-bold truncate">Saya & Celebración 🎶</p>
+          <div id="equalizer" class="flex items-end gap-1 mt-1 paused">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <span class="text-[10px] text-slate-400 ml-1">Música de fondo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <button id="play-btn" class="w-10 h-10 rounded-full bg-pink-500 text-white flex items-center justify-center shadow-lg active:scale-90 transition">
+          <i class="fa-solid fa-play text-sm ml-0.5"></i>
+        </button>
+        <label for="audio-upload" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 flex items-center justify-center cursor-pointer transition" title="Cambiar audio">
+          <i class="fa-solid fa-folder-open text-xs"></i>
+        </label>
+        <input id="audio-upload" type="file" accept="audio/*" class="hidden">
+      </div>
+    </div>
+  </div>
+
+  <audio id="bg-audio" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=latin-festive-112192.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const track = document.getElementById('carousel-track');
+    const container = document.getElementById('carousel-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const dotsContainer = document.getElementById('carousel-dots');
+    const imageUpload = document.getElementById('image-upload');
+    
+    let currentIndex = 0;
+    let slidesCount = track.children.length;
+    let startX = 0;
+    let isDragging = false;
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      Array.from(dotsContainer.children).forEach((dot, idx) => {
+        if (idx === currentIndex) {
+          dot.className = "w-5 h-2.5 rounded-full bg-pink-500 transition-all";
+        } else {
+          dot.className = "w-2.5 h-2.5 rounded-full bg-white/60 transition-all";
+        }
+      });
+    }
+
+    function renderDots() {
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < slidesCount; i++) {
+        const dot = document.createElement('button');
+        dot.addEventListener('click', () => { currentIndex = i; updateCarousel(); });
+        dotsContainer.appendChild(dot);
+      }
+      updateCarousel();
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex > 0) ? currentIndex - 1 : slidesCount - 1;
+      updateCarousel();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex < slidesCount - 1) ? currentIndex + 1 : 0;
+      updateCarousel();
+    });
+
+    container.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    });
+
+    container.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      const endX = e.changedTouches[0].clientX;
+      const diffX = endX - startX;
+
+      if (Math.abs(diffX) > 40) {
+        if (diffX < 0) {
+          currentIndex = (currentIndex < slidesCount - 1) ? currentIndex + 1 : 0;
+        } else {
+          currentIndex = (currentIndex > 0) ? currentIndex - 1 : slidesCount - 1;
+        }
+        updateCarousel();
+      }
+    });
+
+    setInterval(() => {
+      currentIndex = (currentIndex < slidesCount - 1) ? currentIndex + 1 : 0;
+      updateCarousel();
+    }, 4500);
+
+    imageUpload.addEventListener('change', (e) => {
+      const files = e.target.files;
+      if (files.length > 0) {
+        track.innerHTML = '';
+        slidesCount = files.length;
+        Array.from(files).forEach((file, index) => {
+          const url = URL.createObjectURL(file);
+          const slideDiv = document.createElement('div');
+          slideDiv.className = 'w-full flex-shrink-0 h-full relative';
+          slideDiv.innerHTML = `
+            <img src="${url}" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
+              <p class="text-white text-xs font-medium">✨ Foto especial de Emi (${index + 1})</p>
+            </div>
+          `;
+          track.appendChild(slideDiv);
+        });
+        currentIndex = 0;
+        renderDots();
+      }
+    });
+
+    renderDots();
+
+    const audio = document.getElementById('bg-audio');
+    const playBtn = document.getElementById('play-btn');
+    const equalizer = document.getElementById('equalizer');
+    const audioUpload = document.getElementById('audio-upload');
+    const songTitle = document.getElementById('song-title');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play().then(() => {
+          playBtn.innerHTML = '<i class="fa-solid fa-pause text-sm"></i>';
+          equalizer.classList.remove('paused');
+        }).catch(err => {
+          console.log("Audio autoplay restricted");
+        });
+      } else {
+        audio.pause();
+        playBtn.innerHTML = '<i class="fa-solid fa-play text-sm ml-0.5"></i>';
+        equalizer.classList.add('paused');
+      }
+    });
+
+    audioUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        audio.src = url;
+        songTitle.innerText = file.name;
+        audio.play();
+        playBtn.innerHTML = '<i class="fa-solid fa-pause text-sm"></i>';
+        equalizer.classList.remove('paused');
+      }
+    });
+
+    const confettiBtn = document.getElementById('confetti-btn');
+    confettiBtn.addEventListener('click', () => {
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.65 }
+      });
+
+      setTimeout(() => {
+        confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 } });
+        confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 } });
+      }, 200);
+
+      if (audio.paused) {
+        audio.play().then(() => {
+          playBtn.innerHTML = '<i class="fa-solid fa-pause text-sm"></i>';
+          equalizer.classList.remove('paused');
+        }).catch(() => {});
+      }
+    });
+  </script>
+</body>
+</html>
